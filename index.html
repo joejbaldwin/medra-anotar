@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MeDRA annotation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="row">
+    <strong>MeDRA annotation</strong>
+    <label>Who are you?
+      <select id="who"></select>
+    </label>
+    <label>File
+      <select id="file"></select>
+    </label>
+    <span id="saved-note" class="muted"></span>
+  </div>
+</header>
+
+<main>
+  <aside>
+    <section>
+      <h2 id="title"></h2>
+      <details>
+        <summary>Prompt</summary>
+        <p id="prompt"></p>
+      </details>
+      <p id="mode" class="muted"></p>
+    </section>
+
+    <section>
+      <label for="annotator">Annotator</label>
+      <input id="annotator" type="text">
+    </section>
+
+    <section>
+      <label for="concepts">Key concepts <span class="muted">(5-10, comma separated, as written in the text)</span></label>
+      <textarea id="concepts" rows="3"></textarea>
+      <div id="concepts-count" class="muted"></div>
+    </section>
+
+    <section>
+      <label for="topics">Topics <span class="muted">(2-5 groups, one per line, 3-8 comma-separated terms each)</span></label>
+      <textarea id="topics" rows="5"></textarea>
+      <div id="topics-count" class="muted"></div>
+    </section>
+
+    <section>
+      <label class="inline"><input id="corrected" type="checkbox"> Finished (status: corrected)</label>
+      <ul id="problems"></ul>
+      <button id="save" class="primary">Save .md</button>
+      <button id="reset" class="quiet">Reset to the original file</button>
+    </section>
+
+    <section>
+      <h3>Step types</h3>
+      <ul id="legend"></ul>
+      <p class="muted">Click the dot before a sentence to start a step there, or click a tag to change or remove it.
+        Keys 1-6 pick a type, Backspace removes, Escape closes. A new step starts where the reasoning
+        <em>changes purpose</em>, not just where it says "Wait". Your work is kept in this browser until you
+        reset it.</p>
+    </section>
+  </aside>
+
+  <article id="text"></article>
+</main>
+
+<div id="menu" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

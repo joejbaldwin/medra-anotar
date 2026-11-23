@@ -1,0 +1,71 @@
+:root {
+  --surface: #fcfcfb;
+  --panel: #f4f3f0;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --line: #e4e3df;
+  --accent: #2a78d6;
+  /* One colour per step type (fixed order). */
+  --planning: #2a78d6;
+  --development: #8a8984;
+  --verification: #1baf7a;
+  --backtrack: #e34948;
+  --alternative: #eda100;
+  --conclusion: #6250d6;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface); color: var(--ink); font: 15px/1.5 system-ui, sans-serif; }
+header { position: sticky; top: 0; z-index: 2; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px 16px; }
+.row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+select, input[type="text"], textarea { font: inherit; border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; background: white; }
+textarea, input[type="text"] { width: 100%; }
+label { display: block; font-weight: 600; margin-bottom: 4px; }
+header label { display: flex; gap: 6px; align-items: center; font-weight: 400; margin: 0; }
+label.inline { display: flex; gap: 6px; align-items: center; }
+.muted { color: var(--ink-2); font-weight: 400; font-size: 13px; }
+h2 { font-size: 17px; margin: 0 0 4px; }
+h3 { font-size: 14px; margin: 0 0 6px; }
+
+main { display: grid; grid-template-columns: 340px 1fr; gap: 24px; padding: 16px; align-items: start; }
+aside { position: sticky; top: 64px; max-height: calc(100vh - 80px); overflow: auto; background: var(--panel); border-radius: 10px; padding: 12px; }
+aside section { margin-bottom: 14px; }
+#prompt { white-space: pre-wrap; font-size: 13px; }
+button { font: inherit; border-radius: 6px; padding: 6px 12px; cursor: pointer; border: 1px solid var(--line); background: white; }
+button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+button.quiet { border: none; background: none; color: var(--ink-2); text-decoration: underline; padding: 6px 4px; }
+#problems { padding-left: 18px; margin: 6px 0; font-size: 13px; }
+#problems .error { color: #b3261e; }
+#problems .warning { color: var(--ink-2); }
+#legend { list-style: none; padding: 0; margin: 0 0 8px; font-size: 13px; }
+#legend li { display: flex; gap: 6px; align-items: baseline; margin-bottom: 4px; }
+#legend kbd { font-size: 11px; color: var(--ink-2); }
+
+#text { white-space: pre-wrap; max-width: 90ch; font-size: 15px; line-height: 1.75; }
+.sent { border-radius: 3px; padding: 1px 0; }
+.sent.t-planning { background: color-mix(in srgb, var(--planning) 9%, transparent); }
+.sent.t-development { background: color-mix(in srgb, var(--development) 9%, transparent); }
+.sent.t-verification { background: color-mix(in srgb, var(--verification) 11%, transparent); }
+.sent.t-backtrack { background: color-mix(in srgb, var(--backtrack) 10%, transparent); }
+.sent.t-alternative { background: color-mix(in srgb, var(--alternative) 13%, transparent); }
+.sent.t-conclusion { background: color-mix(in srgb, var(--conclusion) 10%, transparent); }
+
+/* Slot before each sentence: a small dot, or the tag if a step starts here. */
+.slot { display: inline-block; vertical-align: baseline; border: none; background: none; padding: 0 3px; margin: 0 2px 0 0; cursor: pointer; }
+.slot.empty::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #c9c8c3; }
+.slot.empty:hover::before, .slot.empty:focus-visible::before { border-color: var(--accent); background: var(--accent); }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; color: white; border-radius: 10px; padding: 0 8px; line-height: 1.6; }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.bg-planning { background: var(--planning); }
+.bg-development { background: var(--development); }
+.bg-verification { background: var(--verification); }
+.bg-backtrack { background: var(--backtrack); }
+.bg-alternative { background: var(--alternative); }
+.bg-conclusion { background: var(--conclusion); }
+
+#menu { position: absolute; z-index: 5; background: white; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 4px 16px rgb(0 0 0 / 0.12); padding: 4px; min-width: 190px; }
+#menu button { display: flex; width: 100%; gap: 8px; align-items: center; border: none; background: none; padding: 5px 8px; text-align: left; border-radius: 5px; }
+#menu button:hover, #menu button:focus-visible { background: var(--panel); outline: none; }
+#menu button.current { font-weight: 700; }
+#menu kbd { margin-left: auto; font-size: 11px; color: var(--ink-2); }
+#menu hr { border: none; border-top: 1px solid var(--line); margin: 4px 0; }
